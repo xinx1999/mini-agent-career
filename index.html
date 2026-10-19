@@ -173,6 +173,35 @@
       <p>四阶段把「手写 agent 项目」和「行业框架（LangChain / LangGraph / FastAPI / RAG）」串起来。
       每看完一P 问自己三句话（见底部）。</p>
     </div>
+    <div class="archwrap"><svg viewBox="0 0 680 210" width="100%" role="img" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+<title>学习路径</title>
+<desc>四个阶段：LangChain 组件、FastAPI 异步、RAG 检索、Agent 架构，每阶段都有对应产出。</desc>
+<defs>
+<marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="40" y="40" font-size="14" font-weight="500" fill="#e6e9ef">学习路径：4 个阶段，一条主线</text>
+<g><rect x="50" y="70" width="130" height="96" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="0.5"/>
+<text x="115" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#e6e9ef">阶段 1</text>
+<text x="115" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9aa3b2">第1周 · LangChain</text>
+<text x="115" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b9dff">产出：读懂 agent</text></g>
+<g><rect x="200" y="70" width="130" height="96" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="0.5"/>
+<text x="265" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#e6e9ef">阶段 2</text>
+<text x="265" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9aa3b2">第2-3周 · FastAPI</text>
+<text x="265" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b9dff">产出：翻译 server.ts</text></g>
+<g><rect x="350" y="70" width="130" height="96" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="0.5"/>
+<text x="415" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#e6e9ef">阶段 3</text>
+<text x="415" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9aa3b2">第4-5周 · RAG</text>
+<text x="415" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b9dff">产出：加向量通道</text></g>
+<g><rect x="500" y="70" width="130" height="96" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="0.5"/>
+<text x="565" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#e6e9ef">阶段 4</text>
+<text x="565" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9aa3b2">第6周 · Agent</text>
+<text x="565" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b9dff">产出：LangGraph + 评估</text></g>
+<path d="M180 118 H200" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow2)"/>
+<path d="M330 118 H350" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow2)"/>
+<path d="M480 118 H500" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow2)"/>
+</svg></div>
     
     <section class="card course-entry">
       <h3>📺 四门课入口（点击直达 B 站，按分P 看）</h3>
@@ -247,25 +276,65 @@
       <h3>看完每一P 都问自己这三个问题</h3>
       <ol class="questions"><li>这和我项目里的哪个文件是同一件事？（答不上来 → 这P 对你没价值，跳过）</li><li>它讲没讲“为什么不用另一种写法”？（只讲“这样写”的是 API 说明书，价值低）</li><li>这句话我能在面试里说出来吗？（说不出来 → 记进笔记，别只点头）</li></ol>
     </section></div>
-  <div id="knowledge" class="tab hidden">
+  <div id="knowledge" class="tab hidden"><div class="archwrap"><svg viewBox="0 0 680 450" width="100%" role="img" xmlns="http://www.w3.org/2000/svg" font-family="system-ui, -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif">
+<title>知识依赖图</title>
+<desc>两条依赖线：Agent 线（Chain vs Agent → ReAct → LangGraph → StateGraph → 持久化）与 RAG 线（Embedding → 向量索引 → 多路召回/Rerank → 高级 RAG → Evals）。点击节点跳到对应知识卡。</desc>
+<defs>
+<marker id="arrow3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+<text x="40" y="40" font-size="14" font-weight="500" fill="#e6e9ef">知识依赖图：先学什么，再学什么</text>
+<text x="60" y="64" font-size="12" fill="#5DCAA5">Agent 线</text>
+<text x="380" y="64" font-size="12" fill="#85B7EB">RAG 线</text>
+<g onclick="jumpK('k-0-2')" style="cursor:pointer"><rect x="60" y="74" width="240" height="44" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="180" y="96" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#9FE1CB">Chain vs Agent</text></g>
+<g onclick="jumpK('k-1-0')" style="cursor:pointer"><rect x="60" y="138" width="240" height="44" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="180" y="160" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#9FE1CB">ReAct</text></g>
+<g onclick="jumpK('k-5-0')" style="cursor:pointer"><rect x="60" y="202" width="240" height="44" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="180" y="224" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#9FE1CB">LangGraph vs LangChain</text></g>
+<g onclick="jumpK('k-5-1')" style="cursor:pointer"><rect x="60" y="266" width="240" height="44" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="180" y="288" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#9FE1CB">StateGraph</text></g>
+<g onclick="jumpK('k-5-3')" style="cursor:pointer"><rect x="60" y="330" width="240" height="44" rx="8" fill="#085041" stroke="#5DCAA5" stroke-width="0.5"/>
+<text x="180" y="352" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#9FE1CB">持久化 / 检查点</text></g>
+<g onclick="jumpK('k-2-2')" style="cursor:pointer"><rect x="380" y="74" width="240" height="44" rx="8" fill="#0C447C" stroke="#85B7EB" stroke-width="0.5"/>
+<text x="500" y="96" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#B5D4F4">Embedding vs 关键词</text></g>
+<g onclick="jumpK('k-3-1')" style="cursor:pointer"><rect x="380" y="138" width="240" height="44" rx="8" fill="#0C447C" stroke="#85B7EB" stroke-width="0.5"/>
+<text x="500" y="160" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#B5D4F4">向量索引</text></g>
+<g onclick="jumpK('k-2-3')" style="cursor:pointer"><rect x="380" y="202" width="240" height="44" rx="8" fill="#0C447C" stroke="#85B7EB" stroke-width="0.5"/>
+<text x="500" y="224" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#B5D4F4">多路召回 / Rerank</text></g>
+<g onclick="jumpK('k-2-4')" style="cursor:pointer"><rect x="380" y="266" width="240" height="44" rx="8" fill="#0C447C" stroke="#85B7EB" stroke-width="0.5"/>
+<text x="500" y="288" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#B5D4F4">高级 RAG（预检索）</text></g>
+<g onclick="jumpK('k-4-0')" style="cursor:pointer"><rect x="380" y="330" width="240" height="44" rx="8" fill="#0C447C" stroke="#85B7EB" stroke-width="0.5"/>
+<text x="500" y="352" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#B5D4F4">Evals（高频挂点）</text></g>
+<path d="M180 118 V138" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<path d="M180 182 V202" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<path d="M180 246 V266" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<path d="M180 310 V330" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<path d="M500 118 V138" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<path d="M500 182 V202" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<path d="M500 246 V266" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<path d="M500 310 V330" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow3)"/>
+<text x="40" y="406" font-size="11" fill="#9aa3b2">两条线最终都要回到「评估」：Agent 看效果，RAG 看命中与忠实度。点节点可跳到对应卡片。</text>
+</svg></div>
         <section class="kgroup">
           <h3 class="kgroup-title">LangChain 与基础</h3>
-          <div class="kgrid"><div class="kcard">
+          <div class="kgrid"><div class="kcard" id="k-0-0">
               <div class="kcard-head"><h4>LangChain 五大组件</h4><span class="src">阶段1 P17</span></div>
               <p class="kone">Models / Prompts / Chains / Memory / Tools&amp;Agents</p>
               <p class="kana">🧩 像一套标准工具箱——Models / Prompts / Chains / Memory / Tools，接口统一，缺哪样自己配。</p>
               <p class="kdetail">你项目一一对应：llm.ts / system prompt / agent.ts / memory.ts / tools.ts。框架是这些能力的标准化封装，不是新原理。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-0-1">
               <div class="kcard-head"><h4>LCEL</h4><span class="src">阶段1 P32-33</span></div>
               <p class="kone">用 | 把组件串成管道，靠 Runnable 接口统一</p>
               <p class="kana">🧩 像乐高积木：每块都有统一的凸点接口，能按任意顺序拼成一条流水线。</p>
               <p class="kdetail">所有组件实现 Runnable（invoke/stream/batch），prompt | model | parser 就是一条链。价值是统一了“可组合”的协议。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-0-2">
               <div class="kcard-head"><h4>Chain vs Agent（必考）</h4><span class="src">阶段1 P31</span></div>
               <p class="kone">Chain 是固定流程，Agent 是动态决策</p>
               <p class="kana">🧩 Chain 是照菜谱做菜（步骤写死）；Agent 是厨师看冰箱自己决定先炒哪个（动态决策）。</p>
               <p class="kdetail">Chain 路径写死；Agent 由模型自己决定调哪个工具、调几次。你项目是纯 Agent（for 循环），可直接说“我手写的循环就是 Agent 最小形态”。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-0-3">
               <div class="kcard-head"><h4>Function / Tool Calling</h4><span class="src">阶段1 P35-36</span></div>
               <p class="kone">模型只输出结构化调用请求，执行永远是你的代码</p>
               <p class="kana">🧩 模型像点菜的客人，只写菜单（工具名 + 参数），厨房（你的代码）负责真做。</p>
@@ -274,17 +343,17 @@
         </section>
         <section class="kgroup">
           <h3 class="kgroup-title">Agent 与推理</h3>
-          <div class="kgrid"><div class="kcard">
+          <div class="kgrid"><div class="kcard" id="k-1-0">
               <div class="kcard-head"><h4>ReAct</h4><span class="src">黑马 P55-59</span></div>
               <p class="kone">Reasoning + Acting 交替：想一步→做一步→看结果→再想</p>
               <p class="kana">🧩 像解题时的草稿纸：想一步、写一步、看结果再想，而不是一次性憋出答案。</p>
               <p class="kdetail">对应你循环里的“调模型 → 拿 tool_calls → 执行 → 把结果塞回 messages”。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-1-1">
               <div class="kcard-head"><h4>Context Engineering</h4><span class="src">FastAPI P15-37</span></div>
               <p class="kone">动态管理历史/长期记忆，给模型最优上下文</p>
               <p class="kana">🧩 像给面试官递简历：不是把所有经历都塞进去，而是挑最相关的那几段。</p>
               <p class="kdetail">短期（同用户）+ 长期（跨用户相似检索）。比“把所有历史塞进去”更工程化。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-1-2">
               <div class="kcard-head"><h4>Multi-Agent / SubAgent</h4><span class="src">FastAPI P15-37</span></div>
               <p class="kone">Planning / Sandbox / Skills 的分工协作</p>
               <p class="kana">🧩 像装修队：项目经理拆活，水电 / 木工 / 油漆各干各的，最后项目经理验收汇总。</p>
@@ -293,27 +362,27 @@
         </section>
         <section class="kgroup">
           <h3 class="kgroup-title">RAG 原理</h3>
-          <div class="kgrid"><div class="kcard">
+          <div class="kgrid"><div class="kcard" id="k-2-0">
               <div class="kcard-head"><h4>RAG 的本质（高手答法）</h4><span class="src">RAG P01-04</span></div>
               <p class="kone">把外部知识引入推理过程的架构</p>
               <p class="kana">🧩 开卷考试：不背下整本书（不改模型参数），答题时现查资料（检索）再作答。</p>
               <p class="kdetail">不改模型参数，推理时检索相关知识，提升准确性/实时性/可追溯性。不是“向量库+大模型”这种流程描述。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-2-1">
               <div class="kcard-head"><h4>什么时候不该用 RAG</h4><span class="src">RAG P01</span></div>
               <p class="kone">知识固定且延迟极敏感 → 微调/长上下文；数据极小 → 直接塞 prompt</p>
               <p class="kana">🧩 为查一个词去建一座图书馆——数据太少时，检索本身就是过度设计。</p>
               <p class="kdetail">几十条数据上检索是过度设计。先判断再上 RAG。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-2-2">
               <div class="kcard-head"><h4>Embedding vs 关键词</h4><span class="src">阶段3 / RAG P08-11</span></div>
               <p class="kone">语义距离 vs 字面重合</p>
               <p class="kana">🧩 关键词像查字典（字面必须对上）；向量像「意思相近就能认出来」（同义词也能匹配）。</p>
               <p class="kdetail">关键词（你的 TF-IDF）同义词/改写就检索不到；向量能召回字面不同但意思近的内容，代价是语义漂移。工程上通常两者都要。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-2-3">
               <div class="kcard-head"><h4>多路召回 vs 混合检索 vs Rerank</h4><span class="src">RAG P08-11 + P35-36</span></div>
               <p class="kone">召回多通道 → 融合排序 → 精排取 Top-K</p>
               <p class="kana">🧩 招聘：多路召回 = 多个渠道收简历；混合检索 = 把各渠道简历去重合并；Rerank = HR 精读挑出最合适的几个。</p>
               <p class="kdetail">多路召回：关键词 BM25 + 向量各召回一批；混合检索：用 RRF 等融合；Rerank：交叉编码器精排（慢但准）。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-2-4">
               <div class="kcard-head"><h4>高级 RAG（预检索）</h4><span class="src">RAG P26-31</span></div>
               <p class="kone">查询转换 / HyDE / 句子窗口 / 层次索引</p>
               <p class="kana">🧩 问路前先想清楚怎么问：把「那个地方怎么走」改成「从 A 到 B 怎么走」，对方才答得准。</p>
@@ -322,17 +391,17 @@
         </section>
         <section class="kgroup">
           <h3 class="kgroup-title">检索与向量</h3>
-          <div class="kgrid"><div class="kcard">
+          <div class="kgrid"><div class="kcard" id="k-3-0">
               <div class="kcard-head"><h4>向量相似度</h4><span class="src">RAG P37 / 黑马 P20-21</span></div>
               <p class="kone">余弦 / 欧氏 / 点积，适用场景不同</p>
               <p class="kana">🧩 余弦像比较两人「关注方向」是否一致（不看嗓门大小）；点积还看嗓门（向量长度）。</p>
               <p class="kdetail">余弦对向量长度不敏感，最常用；点积受长度影响大；欧氏是几何距离。选错度量方法检索质量会掉。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-3-1">
               <div class="kcard-head"><h4>向量索引</h4><span class="src">RAG P37-38</span></div>
               <p class="kone">HNSW / IVF / Flat / LSH</p>
               <p class="kana">🧩 图书馆索引卡：HNSW 按主题连成关系网（顺网找最快）；IVF 先按大类分柜再翻（适合海量）。</p>
               <p class="kdetail">HNSW（图，快，内存高）是默认；IVF 先聚类适合超大规模；Flat 暴力精确但慢。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-3-2">
               <div class="kcard-head"><h4>向量数据库选型</h4><span class="src">RAG P39-40</span></div>
               <p class="kone">Chroma / pgvector / Milvus / Qdrant</p>
               <p class="kana">🧩 选交通工具：Chroma 是自行车（本地随手用）；pgvector 是已有的家用车（不添新东西）；Milvus / Qdrant 是货车（数据量大才需要）。</p>
@@ -341,12 +410,12 @@
         </section>
         <section class="kgroup">
           <h3 class="kgroup-title">评估</h3>
-          <div class="kgrid"><div class="kcard">
+          <div class="kgrid"><div class="kcard" id="k-4-0">
               <div class="kcard-head"><h4>Evals（高频挂点）</h4><span class="src">RAG P41 / test/</span></div>
               <p class="kone">断言（确定性）+ 黄金问题集（非确定性）</p>
               <p class="kana">🧩 给 agent 做体检：确定性指标是量血压（硬数值）；黄金集是模拟考（看综合表现）。</p>
               <p class="kdetail">面试官问“你怎么知道 agent 改好了还是改坏了”：确定性用断言（你 142 条），非确定性用黄金集跑命中率与回归。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-4-1">
               <div class="kcard-head"><h4>RAG 评估指标</h4><span class="src">RAG P41</span></div>
               <p class="kone">检索侧 Recall@K/MRR；生成侧忠实度/相关性/正确性</p>
               <p class="kana">🧩 检索侧看「资料找全没」（Recall / MRR）；生成侧看「有没有瞎编」（忠实度）。</p>
@@ -355,22 +424,22 @@
         </section>
         <section class="kgroup">
           <h3 class="kgroup-title">LangGraph</h3>
-          <div class="kgrid"><div class="kcard">
+          <div class="kgrid"><div class="kcard" id="k-5-0">
               <div class="kcard-head"><h4>LangGraph vs LangChain</h4><span class="src">尚硅谷 P08-12</span></div>
               <p class="kone">组件库+链式编排 vs 显式状态机</p>
               <p class="kana">🧩 LangChain 是造零件的车间；LangGraph 是画流程的施工图（零件怎么流转）。</p>
               <p class="kdetail">LangChain 管“单个链怎么搭”，LangGraph 管“多个步骤怎么流转”（StateGraph：节点+边+条件分支+循环）。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-5-1">
               <div class="kcard-head"><h4>StateGraph</h4><span class="src">尚硅谷 P28-47</span></div>
               <p class="kone">节点 + 边 + 条件分支 + 循环</p>
               <p class="kana">🧩 像地铁线路图：节点是站，边是轨道，条件分支是换乘，循环是环线。</p>
               <p class="kdetail">把流程建模成图，适合回退/分支/多 Agent 协作。你的 for 循环是它的最小特例。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-5-2">
               <div class="kcard-head"><h4>四种图设计模式</h4><span class="src">尚硅谷 P128-132</span></div>
               <p class="kone">提示词链 / 路由 / 编排器-工作者 / 评估器-优化器</p>
               <p class="kana">🧩 四种常见流水线：一条道走到底（提示词链）、岔路口选路（路由）、包工头派活（编排器-工作者）、先做再改（评估器-优化器）。</p>
               <p class="kdetail">多 Agent 协作的标准范式，面试能说出名字+区别就是加分项。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-5-3">
               <div class="kcard-head"><h4>持久化 / 检查点</h4><span class="src">尚硅谷 P56-60</span></div>
               <p class="kone">可恢复执行 ↔ 你的 memory.ts</p>
               <p class="kana">🧩 像游戏存档：打不过可以读档重来，不用从头开始。</p>
@@ -379,17 +448,17 @@
         </section>
         <section class="kgroup">
           <h3 class="kgroup-title">后端 / FastAPI</h3>
-          <div class="kgrid"><div class="kcard">
+          <div class="kgrid"><div class="kcard" id="k-6-0">
               <div class="kcard-head"><h4>同步 vs 异步 / WSGI vs ASGI</h4><span class="src">阶段2 P01/P04</span></div>
               <p class="kone">AI 后端为什么必须异步</p>
               <p class="kana">🧩 同步像排队打饭（一个人打完下一个才能上）；异步像取号等叫（等的时候能先干别的）。</p>
               <p class="kdetail">模型推理是 IO 密集，异步才能高并发。对应你 Node 单线程事件循环的设计。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-6-1">
               <div class="kcard-head"><h4>Pydantic ↔ Zod</h4><span class="src">阶段2 P12-14</span></div>
               <p class="kone">声明式数据校验</p>
               <p class="kana">🧩 像门口的安检机：格式不对的请求直接拦下，不让它进到业务代码里。</p>
               <p class="kdetail">FastAPI 用 Pydantic 校验请求体；你 server.ts 里手工写校验，可对照迁移。</p>
-            </div><div class="kcard">
+            </div><div class="kcard" id="k-6-2">
               <div class="kcard-head"><h4>SSE 流式接口</h4><span class="src">阶段2 / 尚硅谷 P107-108</span></div>
               <p class="kone">服务端推送打字机效果</p>
               <p class="kana">🧩 像看直播而不是等录播：内容一边生成一边推给你。</p>
@@ -17343,6 +17412,12 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
     for (var i = 0; i < links.length; i++) links[i].style.display = 'none';
   }
 })();
+</script>
+<script>
+function jumpK(id){
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'center'});
+}
 </script>
 </body>
 </html>
