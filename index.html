@@ -100,6 +100,28 @@
     font-size:13px; color:var(--dim); background:var(--panel2); padding:10px 12px;
     border-radius:8px; max-height:420px; overflow:auto; margin:0; }
 </style>
+<style>
+  /* practice */
+  .progwrap { display:flex; align-items:center; gap:12px; margin-bottom:20px; flex-wrap:wrap; }
+  .progbar { flex:1; min-width:160px; height:10px; background:var(--panel2); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
+  .progfill { height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--accent2)); transition:width .25s; }
+  .progtxt { color:var(--fg); font-size:14px; font-variant-numeric:tabular-nums; }
+  .resetbtn { background:var(--panel2); color:var(--dim); border:1px solid var(--line); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:13px; }
+  .resetbtn:hover { color:var(--fg); }
+  .prognotice { color:var(--warn); font-size:12.5px; }
+  .exgroup { margin-bottom:26px; }
+  .exgroup-title { font-size:16px; color:var(--accent); margin:0 0 12px; border-bottom:1px solid var(--line); padding-bottom:6px; display:flex; justify-content:space-between; align-items:baseline; }
+  .excount { color:var(--dim); font-size:13px; font-weight:400; font-variant-numeric:tabular-nums; }
+  .exlist { display:flex; flex-direction:column; gap:10px; }
+  .excard { display:flex; gap:12px; background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:12px 14px; cursor:pointer; transition:.15s; }
+  .excard:hover { border-color:var(--accent); }
+  .excard input { margin-top:3px; width:17px; height:17px; flex:0 0 auto; accent-color:var(--accent); cursor:pointer; }
+  .exbody { flex:1; }
+  .extitle { font-weight:600; font-size:14.5px; margin-bottom:5px; }
+  .excard input:checked ~ .exbody .extitle { text-decoration:line-through; color:var(--dim); }
+  .extask, .exexp, .exver { font-size:13px; margin:3px 0; color:var(--dim); }
+  .extask b, .exexp b, .exver b { color:var(--accent2); }
+</style>
 </head>
 <body>
 <header>
@@ -109,6 +131,7 @@
     <button data-tab="knowledge">📚 知识点</button>
     <button data-tab="project">🛠️ 项目实操</button>
     <button data-tab="notes">📝 笔记库（165）</button>
+    <button data-tab="practice" id="nav-practice">🎯 练习闯关</button>
   </nav>
 </header>
 <main>
@@ -16709,6 +16732,178 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
 *   转写稿中 `[00:03:30]` 提到的 &quot;完整体&quot; 应为 <b>Agent</b>（智能体）。
 *   讲师提到的 &quot;Patcharm&quot; 疑为 <b>Pycharm</b>（IDE 名称），&quot;零物&quot; 疑为 <b>Jupyter Notebook</b> 或某个具体的环境名称，结合 &quot;notabook&quot; 推测是在 Notebook 环境中运行代码。</pre></details>
             </div></div></div></div></div>
+  <div id="practice" class="tab hidden">
+    <div class="intro">
+      <p>把「看懂」变成「做到」。这些练习全部基于你自己的项目，每个都写了<b>改什么 / 预期现象 / 怎么验收</b>——
+      做完勾上，进度自动存在本地。共 <b>18</b> 个。</p>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="progfill"></div></div>
+      <span class="progtxt" id="progtxt">0 / 18</span>
+      <button class="resetbtn" id="resetbtn">重置进度</button>
+      <span class="prognotice" id="prognotice"></span>
+    </div>
+    
+        <section class="exgroup" data-g="0">
+          <h3 class="exgroup-title">阶段 1 · LangChain 组件 ↔ 手写实现 <span class="excount" id="cnt-0">0/5</span></h3>
+          <div class="exlist"><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-0-0" data-eid="ex-0-0">
+                <div class="exbody">
+                  <div class="extitle">读懂消息协议</div>
+                  <p class="extask"><b>改什么：</b>读 src/types.ts，弄清 System / Human / AI 三种 message 各带什么字段。</p>
+                  <p class="exexp"><b>预期：</b>不看代码能说出三者的区别与用途。</p>
+                  <p class="exver"><b>验收：</b>合上文件口头讲一遍，讲不清就再读。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-0-1" data-eid="ex-0-1">
+                <div class="exbody">
+                  <div class="extitle">标出核心循环三步</div>
+                  <p class="extask"><b>改什么：</b>在 src/agent.ts 找到那个 for 循环，用注释标出「调模型 → 执行工具 → 塞回 messages」。</p>
+                  <p class="exexp"><b>预期：</b>循环里每一步都能对应上一行注释。</p>
+                  <p class="exver"><b>验收：</b>跑 npm test，142 条仍全绿（只加注释不该挂）。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-0-2" data-eid="ex-0-2">
+                <div class="exbody">
+                  <div class="extitle">加一个 get_weather 工具</div>
+                  <p class="extask"><b>改什么：</b>在 src/tools.ts 加一个 get_weather 工具，description 写得比代码细。</p>
+                  <p class="exexp"><b>预期：</b>模型会自己决定调用它。</p>
+                  <p class="exver"><b>验收：</b>交互模式问「北京天气怎么样」，看它是否选了这个工具。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-0-3" data-eid="ex-0-3">
+                <div class="exbody">
+                  <div class="extitle">把 maxSteps 改成 2</div>
+                  <p class="extask"><b>改什么：</b>把 src/agent.ts 的 maxSteps 调成 2，再问一个需要多步的问题。</p>
+                  <p class="exexp"><b>预期：</b>跑满后它明确说「未完成」，不假装给了答案。</p>
+                  <p class="exver"><b>验收：</b>观察返回文本，确认有「未完成/没做完」之类的话。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-0-4" data-eid="ex-0-4">
+                <div class="exbody">
+                  <div class="extitle">删一行看断言挂</div>
+                  <p class="extask"><b>改什么：</b>删掉 agent.ts 出口处那条 push assistant，跑 multi-turn.mjs。</p>
+                  <p class="exexp"><b>预期：</b>有断言变红，证明它真的在测东西。</p>
+                  <p class="exver"><b>验收：</b>确认哪条挂，再把那行加回来恢复全绿。</p>
+                </div>
+              </div></div>
+        </section>
+        <section class="exgroup" data-g="1">
+          <h3 class="exgroup-title">阶段 2 · FastAPI / 异步后端 <span class="excount" id="cnt-1">0/4</span></h3>
+          <div class="exlist"><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-1-0" data-eid="ex-1-0">
+                <div class="exbody">
+                  <div class="extitle">解释 SSE 为什么要禁缓冲</div>
+                  <p class="extask"><b>改什么：</b>读 server.ts 的流式部分，弄清为什么要设禁缓冲头 / 手动 flush。</p>
+                  <p class="exexp"><b>预期：</b>能说出不禁缓冲会怎样（被攒着、看不到逐字）。</p>
+                  <p class="exver"><b>验收：</b>能讲清 X-Accel-Buffering / flushHeaders 的作用。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-1-1" data-eid="ex-1-1">
+                <div class="exbody">
+                  <div class="extitle">加一个 /health 路由</div>
+                  <p class="extask"><b>改什么：</b>给 server.ts 加 GET /health，返回 {ok:true}。</p>
+                  <p class="exexp"><b>预期：</b>服务能响应健康检查。</p>
+                  <p class="exver"><b>验收：</b>curl http://localhost:3000/health 返回 200。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-1-2" data-eid="ex-1-2">
+                <div class="exbody">
+                  <div class="extitle">给请求体加校验</div>
+                  <p class="extask"><b>改什么：</b>对照 FastAPI 的 Pydantic，给 server.ts 的请求体加字段校验。</p>
+                  <p class="exexp"><b>预期：</b>缺字段或类型不对时明确报错。</p>
+                  <p class="exver"><b>验收：</b>故意少传字段，看是否返回 400 而不是 500。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-1-3" data-eid="ex-1-3">
+                <div class="exbody">
+                  <div class="extitle">手写一个最小 SSE</div>
+                  <p class="extask"><b>改什么：</b>用 Node 内置 http 写一个每 100ms 推一条消息的 SSE 端点。</p>
+                  <p class="exexp"><b>预期：</b>客户端能逐条收到，而不是一次性收到。</p>
+                  <p class="exver"><b>验收：</b>浏览器 EventSource 或 curl -N 能看到逐条到达。</p>
+                </div>
+              </div></div>
+        </section>
+        <section class="exgroup" data-g="2">
+          <h3 class="exgroup-title">阶段 3 · 向量检索 + RAG <span class="excount" id="cnt-2">0/4</span></h3>
+          <div class="exlist"><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-2-0" data-eid="ex-2-0">
+                <div class="exbody">
+                  <div class="extitle">讲清 TF-IDF + 余弦</div>
+                  <p class="extask"><b>改什么：</b>读 src/rag.ts，弄清 bigram 切词和余弦相似度怎么算。</p>
+                  <p class="exexp"><b>预期：</b>能解释「为什么同义词会检索不到」。</p>
+                  <p class="exver"><b>验收：</b>合上代码讲一遍，讲不清就是没懂。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-2-1" data-eid="ex-2-1">
+                <div class="exbody">
+                  <div class="extitle">看 rag-test 覆盖了什么</div>
+                  <p class="extask"><b>改什么：</b>跑 rag-test.mjs，逐条看 22 条断言在测哪几类。</p>
+                  <p class="exexp"><b>预期：</b>能说出覆盖了排序 / 归一化 / 真实命中。</p>
+                  <p class="exver"><b>验收：</b>不看注释，自己总结出三类。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-2-2" data-eid="ex-2-2">
+                <div class="exbody">
+                  <div class="extitle">20 个真实问题测命中</div>
+                  <p class="extask"><b>改什么：</b>准备 20 个你真正会问的问题，跑检索，统计命中率。</p>
+                  <p class="exexp"><b>预期：</b>得到一个可量化的百分比。</p>
+                  <p class="exver"><b>验收：</b>输出「命中 x/20」并写一句结论。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-2-3" data-eid="ex-2-3">
+                <div class="exbody">
+                  <div class="extitle">给搜索加失败降级</div>
+                  <p class="extask"><b>改什么：</b>改 src/search.ts，网络失败时返回空结果而不是抛错。</p>
+                  <p class="exexp"><b>预期：</b>搜索挂了不拖垮整个对话。</p>
+                  <p class="exver"><b>验收：</b>模拟请求失败，确认不崩、有降级提示。</p>
+                </div>
+              </div></div>
+        </section>
+        <section class="exgroup" data-g="3">
+          <h3 class="exgroup-title">阶段 4 · Agent 架构 + 评估 <span class="excount" id="cnt-3">0/5</span></h3>
+          <div class="exlist"><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-3-0" data-eid="ex-3-0">
+                <div class="exbody">
+                  <div class="extitle">讲清压缩的触发条件</div>
+                  <p class="extask"><b>改什么：</b>读 src/compress.ts，弄清何时触发、为什么只压早期对话。</p>
+                  <p class="exexp"><b>预期：</b>能解释「无限增长」和「丢信息」之间的取舍。</p>
+                  <p class="exver"><b>验收：</b>口头讲一遍，讲不清再读。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-3-1" data-eid="ex-3-1">
+                <div class="exbody">
+                  <div class="extitle">实现读流卡死检测（项目待做）</div>
+                  <p class="extask"><b>改什么：</b>给流式读取加超时阈值，做双档设计避免误杀长思考。</p>
+                  <p class="exexp"><b>预期：</b>真卡死能中断，正常长思考不被误杀。</p>
+                  <p class="exver"><b>验收：</b>加测试：模拟卡死触发、正常长思考不触发。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-3-2" data-eid="ex-3-2">
+                <div class="exbody">
+                  <div class="extitle">trace 落盘成 JSONL（项目待做）</div>
+                  <p class="extask"><b>改什么：</b>把 src/trace.ts 的记录写成 JSONL 文件，每步一行。</p>
+                  <p class="exexp"><b>预期：</b>跑一次就生成可分析的日志。</p>
+                  <p class="exver"><b>验收：</b>跑一次，确认文件生成、每行一条合法 JSON。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-3-3" data-eid="ex-3-3">
+                <div class="exbody">
+                  <div class="extitle">打印 messages 看上下文增长</div>
+                  <p class="extask"><b>改什么：</b>在每步之后打印整个 messages 数组。</p>
+                  <p class="exexp"><b>预期：</b>直观看到上下文怎么变长。</p>
+                  <p class="exver"><b>验收：</b>跑一个多步任务，观察 messages 条数增长。</p>
+                </div>
+              </div><div class="excard">
+                <input type="checkbox" class="excheck" id="ex-3-4" data-eid="ex-3-4">
+                <div class="exbody">
+                  <div class="extitle">画出 agent 循环图</div>
+                  <p class="extask"><b>改什么：</b>不看任何资料，画出「调模型 → 工具 → 再调模型」的循环图。</p>
+                  <p class="exexp"><b>预期：</b>能讲清入口条件和出口条件。</p>
+                  <p class="exver"><b>验收：</b>画出来并讲一遍；讲不清说明还没吃透。</p>
+                </div>
+              </div></div>
+        </section></div>
 </main>
 <footer>由笔记自动生成 · 数据来自 notes/索引.md · 双击即可离线学习</footer>
 <script>
@@ -16746,6 +16941,61 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
     chips.forEach(x=>x.classList.remove('active'));
     c.classList.add('active'); curC = c.dataset.c; applyFilter();
   });
+</script>
+<script>
+(function(){
+  var KEY = 'agent-learn-progress';
+  var checks = Array.prototype.slice.call(document.querySelectorAll('.excheck'));
+  var notice = document.getElementById('prognotice');
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; }
+  catch(e) { if (notice) notice.textContent = '读取本地进度失败，本次从 0 开始。'; }
+
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); if (notice) notice.textContent=''; }
+    catch(e) { if (notice) notice.textContent = '进度无法保存（浏览器禁用了本地存储）。'; }
+  }
+  function refresh(){
+    var done = 0;
+    Array.prototype.forEach.call(document.querySelectorAll('.exgroup'), function(g){
+      var gcs = Array.prototype.slice.call(g.querySelectorAll('.excheck'));
+      var gd = gcs.filter(function(c){return c.checked;}).length;
+      var el = document.getElementById('cnt-' + g.dataset.g);
+      if (el) el.textContent = gd + '/' + gcs.length;
+      done += gd;
+    });
+    var total = checks.length;
+    var fill = document.getElementById('progfill');
+    var txt = document.getElementById('progtxt');
+    var nav = document.getElementById('nav-practice');
+    if (fill) fill.style.width = (total ? (done/total*100) : 0) + '%';
+    if (txt) txt.textContent = done + ' / ' + total;
+    if (nav) nav.textContent = '🎯 练习闯关 (' + done + '/' + total + ')';
+  }
+  checks.forEach(function(c){
+    c.checked = !!state[c.dataset.eid];
+    c.addEventListener('change', function(){
+      state[c.dataset.eid] = c.checked; save(); refresh();
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.excard'), function(card){
+    card.addEventListener('click', function(e){
+      if (e.target.tagName === 'INPUT') return;
+      var c = card.querySelector('.excheck');
+      c.checked = !c.checked;
+      c.dispatchEvent(new Event('change'));
+    });
+  });
+  var rb = document.getElementById('resetbtn');
+  if (rb) rb.addEventListener('click', function(){
+    if (!confirm('确定清空所有练习进度？')) return;
+    state = {};
+    try { localStorage.removeItem(KEY); } catch(e){ if (notice) notice.textContent='清空失败：本地存储不可用。'; }
+    checks.forEach(function(c){ c.checked = false; });
+    refresh();
+  });
+  refresh();
+})();
 </script>
 </body>
 </html>
