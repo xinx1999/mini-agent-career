@@ -17278,5 +17278,14 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
   refresh();
 })();
 </script>
+<script>
+(function(){
+  // 「打开原文」是 file:// 链接，线上（http/https）点了无效，直接隐藏；本地双击（file://）保留
+  if (location.protocol !== 'file:') {
+    var links = document.querySelectorAll('.nlink');
+    for (var i = 0; i < links.length; i++) links[i].style.display = 'none';
+  }
+})();
+</script>
 </body>
 </html>
