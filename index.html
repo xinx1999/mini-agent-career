@@ -55,6 +55,7 @@
   .kcard-head h4 { margin:0; font-size:15px; }
   .src { font-size:12px; color:var(--accent2); white-space:nowrap; }
   .kone { color:var(--warn); font-weight:600; margin:8px 0 6px; font-size:14px; }
+  .kana { color:var(--accent2); font-size:13px; margin:0 0 6px; font-style:italic; }
   .kdetail { color:var(--dim); font-size:13.5px; margin:0; }
   /* project */
   .pgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:14px; }
@@ -250,18 +251,22 @@
           <div class="kgrid"><div class="kcard">
               <div class="kcard-head"><h4>LangChain 五大组件</h4><span class="src">阶段1 P17</span></div>
               <p class="kone">Models / Prompts / Chains / Memory / Tools&amp;Agents</p>
+              <p class="kana">🧩 像一套标准工具箱——Models / Prompts / Chains / Memory / Tools，接口统一，缺哪样自己配。</p>
               <p class="kdetail">你项目一一对应：llm.ts / system prompt / agent.ts / memory.ts / tools.ts。框架是这些能力的标准化封装，不是新原理。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>LCEL</h4><span class="src">阶段1 P32-33</span></div>
               <p class="kone">用 | 把组件串成管道，靠 Runnable 接口统一</p>
+              <p class="kana">🧩 像乐高积木：每块都有统一的凸点接口，能按任意顺序拼成一条流水线。</p>
               <p class="kdetail">所有组件实现 Runnable（invoke/stream/batch），prompt | model | parser 就是一条链。价值是统一了“可组合”的协议。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>Chain vs Agent（必考）</h4><span class="src">阶段1 P31</span></div>
               <p class="kone">Chain 是固定流程，Agent 是动态决策</p>
+              <p class="kana">🧩 Chain 是照菜谱做菜（步骤写死）；Agent 是厨师看冰箱自己决定先炒哪个（动态决策）。</p>
               <p class="kdetail">Chain 路径写死；Agent 由模型自己决定调哪个工具、调几次。你项目是纯 Agent（for 循环），可直接说“我手写的循环就是 Agent 最小形态”。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>Function / Tool Calling</h4><span class="src">阶段1 P35-36</span></div>
               <p class="kone">模型只输出结构化调用请求，执行永远是你的代码</p>
+              <p class="kana">🧩 模型像点菜的客人，只写菜单（工具名 + 参数），厨房（你的代码）负责真做。</p>
               <p class="kdetail">模型不执行工具，它输出「工具名 + 参数 JSON」。你 llm.ts 里按 index 拼 tool_calls.arguments 就是这件事的细节。</p>
             </div></div>
         </section>
@@ -270,14 +275,17 @@
           <div class="kgrid"><div class="kcard">
               <div class="kcard-head"><h4>ReAct</h4><span class="src">黑马 P55-59</span></div>
               <p class="kone">Reasoning + Acting 交替：想一步→做一步→看结果→再想</p>
+              <p class="kana">🧩 像解题时的草稿纸：想一步、写一步、看结果再想，而不是一次性憋出答案。</p>
               <p class="kdetail">对应你循环里的“调模型 → 拿 tool_calls → 执行 → 把结果塞回 messages”。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>Context Engineering</h4><span class="src">FastAPI P15-37</span></div>
               <p class="kone">动态管理历史/长期记忆，给模型最优上下文</p>
+              <p class="kana">🧩 像给面试官递简历：不是把所有经历都塞进去，而是挑最相关的那几段。</p>
               <p class="kdetail">短期（同用户）+ 长期（跨用户相似检索）。比“把所有历史塞进去”更工程化。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>Multi-Agent / SubAgent</h4><span class="src">FastAPI P15-37</span></div>
               <p class="kone">Planning / Sandbox / Skills 的分工协作</p>
+              <p class="kana">🧩 像装修队：项目经理拆活，水电 / 木工 / 油漆各干各的，最后项目经理验收汇总。</p>
               <p class="kdetail">把大任务拆给子 Agent，主 Agent 做规划与汇总。对应你的 agent.ts 循环可扩展为编排层。</p>
             </div></div>
         </section>
@@ -286,22 +294,27 @@
           <div class="kgrid"><div class="kcard">
               <div class="kcard-head"><h4>RAG 的本质（高手答法）</h4><span class="src">RAG P01-04</span></div>
               <p class="kone">把外部知识引入推理过程的架构</p>
+              <p class="kana">🧩 开卷考试：不背下整本书（不改模型参数），答题时现查资料（检索）再作答。</p>
               <p class="kdetail">不改模型参数，推理时检索相关知识，提升准确性/实时性/可追溯性。不是“向量库+大模型”这种流程描述。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>什么时候不该用 RAG</h4><span class="src">RAG P01</span></div>
               <p class="kone">知识固定且延迟极敏感 → 微调/长上下文；数据极小 → 直接塞 prompt</p>
+              <p class="kana">🧩 为查一个词去建一座图书馆——数据太少时，检索本身就是过度设计。</p>
               <p class="kdetail">几十条数据上检索是过度设计。先判断再上 RAG。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>Embedding vs 关键词</h4><span class="src">阶段3 / RAG P08-11</span></div>
               <p class="kone">语义距离 vs 字面重合</p>
+              <p class="kana">🧩 关键词像查字典（字面必须对上）；向量像「意思相近就能认出来」（同义词也能匹配）。</p>
               <p class="kdetail">关键词（你的 TF-IDF）同义词/改写就检索不到；向量能召回字面不同但意思近的内容，代价是语义漂移。工程上通常两者都要。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>多路召回 vs 混合检索 vs Rerank</h4><span class="src">RAG P08-11 + P35-36</span></div>
               <p class="kone">召回多通道 → 融合排序 → 精排取 Top-K</p>
+              <p class="kana">🧩 招聘：多路召回 = 多个渠道收简历；混合检索 = 把各渠道简历去重合并；Rerank = HR 精读挑出最合适的几个。</p>
               <p class="kdetail">多路召回：关键词 BM25 + 向量各召回一批；混合检索：用 RRF 等融合；Rerank：交叉编码器精排（慢但准）。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>高级 RAG（预检索）</h4><span class="src">RAG P26-31</span></div>
               <p class="kone">查询转换 / HyDE / 句子窗口 / 层次索引</p>
+              <p class="kana">🧩 问路前先想清楚怎么问：把「那个地方怎么走」改成「从 A 到 B 怎么走」，对方才答得准。</p>
               <p class="kdetail">解决用户问法与知识库表述不一致、语义割裂的问题。你的“杀手锏”多路召回就在这里。</p>
             </div></div>
         </section>
@@ -310,14 +323,17 @@
           <div class="kgrid"><div class="kcard">
               <div class="kcard-head"><h4>向量相似度</h4><span class="src">RAG P37 / 黑马 P20-21</span></div>
               <p class="kone">余弦 / 欧氏 / 点积，适用场景不同</p>
+              <p class="kana">🧩 余弦像比较两人「关注方向」是否一致（不看嗓门大小）；点积还看嗓门（向量长度）。</p>
               <p class="kdetail">余弦对向量长度不敏感，最常用；点积受长度影响大；欧氏是几何距离。选错度量方法检索质量会掉。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>向量索引</h4><span class="src">RAG P37-38</span></div>
               <p class="kone">HNSW / IVF / Flat / LSH</p>
+              <p class="kana">🧩 图书馆索引卡：HNSW 按主题连成关系网（顺网找最快）；IVF 先按大类分柜再翻（适合海量）。</p>
               <p class="kdetail">HNSW（图，快，内存高）是默认；IVF 先聚类适合超大规模；Flat 暴力精确但慢。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>向量数据库选型</h4><span class="src">RAG P39-40</span></div>
               <p class="kone">Chroma / pgvector / Milvus / Qdrant</p>
+              <p class="kana">🧩 选交通工具：Chroma 是自行车（本地随手用）；pgvector 是已有的家用车（不添新东西）；Milvus / Qdrant 是货车（数据量大才需要）。</p>
               <p class="kdetail">Chroma 本地开箱即用；pgvector 已有 Postgres 少引入组件；Milvus/Qdrant 数据量大要生产级扩展。</p>
             </div></div>
         </section>
@@ -326,10 +342,12 @@
           <div class="kgrid"><div class="kcard">
               <div class="kcard-head"><h4>Evals（高频挂点）</h4><span class="src">RAG P41 / test/</span></div>
               <p class="kone">断言（确定性）+ 黄金问题集（非确定性）</p>
+              <p class="kana">🧩 给 agent 做体检：确定性指标是量血压（硬数值）；黄金集是模拟考（看综合表现）。</p>
               <p class="kdetail">面试官问“你怎么知道 agent 改好了还是改坏了”：确定性用断言（你 142 条），非确定性用黄金集跑命中率与回归。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>RAG 评估指标</h4><span class="src">RAG P41</span></div>
               <p class="kone">检索侧 Recall@K/MRR；生成侧忠实度/相关性/正确性</p>
+              <p class="kana">🧩 检索侧看「资料找全没」（Recall / MRR）；生成侧看「有没有瞎编」（忠实度）。</p>
               <p class="kdetail">工具 RAGAs、TruLens。忠实度（faithfulness）看有没有编；相关性看答非所问。</p>
             </div></div>
         </section>
@@ -338,18 +356,22 @@
           <div class="kgrid"><div class="kcard">
               <div class="kcard-head"><h4>LangGraph vs LangChain</h4><span class="src">尚硅谷 P08-12</span></div>
               <p class="kone">组件库+链式编排 vs 显式状态机</p>
+              <p class="kana">🧩 LangChain 是造零件的车间；LangGraph 是画流程的施工图（零件怎么流转）。</p>
               <p class="kdetail">LangChain 管“单个链怎么搭”，LangGraph 管“多个步骤怎么流转”（StateGraph：节点+边+条件分支+循环）。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>StateGraph</h4><span class="src">尚硅谷 P28-47</span></div>
               <p class="kone">节点 + 边 + 条件分支 + 循环</p>
+              <p class="kana">🧩 像地铁线路图：节点是站，边是轨道，条件分支是换乘，循环是环线。</p>
               <p class="kdetail">把流程建模成图，适合回退/分支/多 Agent 协作。你的 for 循环是它的最小特例。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>四种图设计模式</h4><span class="src">尚硅谷 P128-132</span></div>
               <p class="kone">提示词链 / 路由 / 编排器-工作者 / 评估器-优化器</p>
+              <p class="kana">🧩 四种常见流水线：一条道走到底（提示词链）、岔路口选路（路由）、包工头派活（编排器-工作者）、先做再改（评估器-优化器）。</p>
               <p class="kdetail">多 Agent 协作的标准范式，面试能说出名字+区别就是加分项。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>持久化 / 检查点</h4><span class="src">尚硅谷 P56-60</span></div>
               <p class="kone">可恢复执行 ↔ 你的 memory.ts</p>
+              <p class="kana">🧩 像游戏存档：打不过可以读档重来，不用从头开始。</p>
               <p class="kdetail">“可恢复执行”是什么——中断后能从中断点继续。对应你落盘的会话状态。</p>
             </div></div>
         </section>
@@ -358,14 +380,17 @@
           <div class="kgrid"><div class="kcard">
               <div class="kcard-head"><h4>同步 vs 异步 / WSGI vs ASGI</h4><span class="src">阶段2 P01/P04</span></div>
               <p class="kone">AI 后端为什么必须异步</p>
+              <p class="kana">🧩 同步像排队打饭（一个人打完下一个才能上）；异步像取号等叫（等的时候能先干别的）。</p>
               <p class="kdetail">模型推理是 IO 密集，异步才能高并发。对应你 Node 单线程事件循环的设计。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>Pydantic ↔ Zod</h4><span class="src">阶段2 P12-14</span></div>
               <p class="kone">声明式数据校验</p>
+              <p class="kana">🧩 像门口的安检机：格式不对的请求直接拦下，不让它进到业务代码里。</p>
               <p class="kdetail">FastAPI 用 Pydantic 校验请求体；你 server.ts 里手工写校验，可对照迁移。</p>
             </div><div class="kcard">
               <div class="kcard-head"><h4>SSE 流式接口</h4><span class="src">阶段2 / 尚硅谷 P107-108</span></div>
               <p class="kone">服务端推送打字机效果</p>
+              <p class="kana">🧩 像看直播而不是等录播：内容一边生成一边推给你。</p>
               <p class="kdetail">你的 server.ts 已有 SSE；FastAPI 用 StreamingResponse 实现同一件事。</p>
             </div></div>
         </section></div>
