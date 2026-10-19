@@ -121,6 +121,30 @@
   .excard input:checked ~ .exbody .extitle { text-decoration:line-through; color:var(--dim); }
   .extask, .exexp, .exver { font-size:13px; margin:3px 0; color:var(--dim); }
   .extask b, .exexp b, .exver b { color:var(--accent2); }
+
+  /* quiz */
+  .qgroup { margin-bottom:26px; }
+  .qgroup-title { font-size:16px; color:var(--accent); margin:0 0 12px; border-bottom:1px solid var(--line); padding-bottom:6px; display:flex; justify-content:space-between; align-items:baseline; }
+  .qscore { color:var(--dim); font-size:13px; font-weight:400; font-variant-numeric:tabular-nums; }
+  .qlist { display:flex; flex-direction:column; gap:12px; }
+  .qcard { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px 16px; }
+  .qtitle { font-size:14.5px; font-weight:600; margin-bottom:10px; line-height:1.55; }
+  .qnum { display:inline-block; min-width:22px; height:22px; line-height:22px; text-align:center; background:var(--badge); color:var(--accent2); border-radius:6px; font-size:12px; margin-right:8px; }
+  .qopts { display:flex; flex-direction:column; gap:8px; }
+  .qopt { text-align:left; background:var(--panel2); color:var(--fg); border:1px solid var(--line); border-radius:8px; padding:9px 12px; cursor:pointer; font-size:13.5px; transition:.12s; }
+  .qopt:hover { border-color:var(--accent); }
+  .qopt.correct { background:rgba(126,224,192,.15); border-color:var(--accent2); }
+  .qopt.wrong { background:rgba(255,110,110,.12); border-color:#ff6e6e; }
+  .qopt:disabled { cursor:default; }
+  .qwhy { margin-top:10px; font-size:13px; color:var(--dim); background:var(--panel2); border-left:3px solid var(--accent); border-radius:0 8px 8px 0; padding:8px 12px; }
+  .qreveal { background:var(--panel2); color:var(--accent); border:1px solid var(--line); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:13px; }
+  .qreveal:hover { border-color:var(--accent); }
+  .qref { margin-top:10px; font-size:13px; color:var(--fg); background:var(--panel2); border-radius:8px; padding:10px 12px; line-height:1.6; }
+  .qself { margin-top:10px; display:flex; gap:8px; }
+  .qselfbtn { background:var(--panel2); color:var(--dim); border:1px solid var(--line); border-radius:8px; padding:6px 12px; cursor:pointer; font-size:13px; }
+  .qselfbtn:hover { color:var(--fg); border-color:var(--accent); }
+  .qselfbtn.ok { background:rgba(126,224,192,.18); border-color:var(--accent2); color:var(--accent2); }
+  .qselfbtn.bad { background:rgba(255,110,110,.15); border-color:#ff6e6e; color:#ff9a9a; }
 </style>
 </head>
 <body>
@@ -132,6 +156,7 @@
     <button data-tab="project">🛠️ 项目实操</button>
     <button data-tab="notes">📝 笔记库（165）</button>
     <button data-tab="practice" id="nav-practice">🎯 练习闯关</button>
+    <button data-tab="quiz" id="nav-quiz">🧪 阶段自测</button>
   </nav>
 </header>
 <main>
@@ -16904,6 +16929,130 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
                 </div>
               </div></div>
         </section></div>
+  <div id="quiz" class="tab hidden">
+    <div class="intro">
+      <p>每个阶段 4 道题：选择题点选项立刻判对错并给解析；开放题先自己答，再点「查看参考答案」自评。
+      共 <b>16</b> 题。答对进度自动存在本地。</p>
+    </div>
+    <div class="progwrap">
+      <div class="progbar"><div class="progfill" id="qprogfill"></div></div>
+      <span class="progtxt" id="qprogtxt">0 / 16</span>
+      <button class="resetbtn" id="qresetbtn">重置自测</button>
+      <span class="prognotice" id="qnotice"></span>
+    </div>
+    
+        <section class="qgroup" data-g="0">
+          <h3 class="qgroup-title">阶段 1 · LangChain 组件 ↔ 手写实现 <span class="qscore" id="qcnt-0">0/4</span></h3>
+          <div class="qlist"><div class="qcard" data-qid="q-0-0" data-type="choice" data-ans="1">
+                    <div class="qtitle"><span class="qnum">1</span>Agent 的本质是什么？</div>
+                    <div class="qopts"><button class="qopt" data-i="0">A. 一个复杂的多线程调度器</button><button class="qopt" data-i="1">B. 一个「调模型 → 执行工具 → 把结果塞回 messages → 再调模型」的循环</button><button class="qopt" data-i="2">C. 一套向量数据库</button><button class="qopt" data-i="3">D. 必须依赖 LangChain 才能实现</button></div>
+                    <div class="qwhy hidden">解析：核心就是一个 for 循环，直到模型不再请求工具。框架只是把这套东西标准化封装了。</div>
+                  </div><div class="qcard" data-qid="q-0-1" data-type="choice" data-ans="1">
+                    <div class="qtitle"><span class="qnum">2</span>模型返回 tool_calls 时，工具实际由谁执行？</div>
+                    <div class="qopts"><button class="qopt" data-i="0">A. 模型自己执行</button><button class="qopt" data-i="1">B. 你的代码执行，模型只输出「工具名 + 参数 JSON」</button><button class="qopt" data-i="2">C. 框架自动执行，你写不了</button><button class="qopt" data-i="3">D. 浏览器执行</button></div>
+                    <div class="qwhy hidden">解析：Function / Tool Calling 只负责输出结构化调用请求，执行永远发生在你的代码里。</div>
+                  </div><div class="qcard" data-qid="q-0-2" data-type="open">
+                    <div class="qtitle"><span class="qnum">3</span>为什么说「Chain vs Agent」是必考？用你自己的项目回答。</div>
+                    <button class="qreveal">查看参考答案 ▾</button>
+                    <div class="qref hidden">Chain 是固定流程，路径写死；Agent 是模型动态决定调哪个工具、调几次。我的项目是纯 Agent（for 循环），手写的循环就是 Agent 的最小形态。</div>
+                    <div class="qself hidden">
+                      <button class="qselfbtn" data-ok="1">✔ 我答对了</button>
+                      <button class="qselfbtn" data-ok="0">✘ 没答对</button>
+                    </div>
+                  </div><div class="qcard" data-qid="q-0-3" data-type="open">
+                    <div class="qtitle"><span class="qnum">4</span>system prompt 和工具 description 分别起什么作用？哪个更容易被忽视？</div>
+                    <button class="qreveal">查看参考答案 ▾</button>
+                    <div class="qref hidden">system prompt 定角色 / 任务 / 约束 / 输出格式；tool description 是模型判断「要不要用、怎么用」的唯一依据，写得比代码还重要，也最容易被忽视。</div>
+                    <div class="qself hidden">
+                      <button class="qselfbtn" data-ok="1">✔ 我答对了</button>
+                      <button class="qselfbtn" data-ok="0">✘ 没答对</button>
+                    </div>
+                  </div></div>
+        </section>
+        <section class="qgroup" data-g="1">
+          <h3 class="qgroup-title">阶段 2 · FastAPI / 异步后端 <span class="qscore" id="qcnt-1">0/4</span></h3>
+          <div class="qlist"><div class="qcard" data-qid="q-1-0" data-type="choice" data-ans="1">
+                    <div class="qtitle"><span class="qnum">5</span>AI 后端为什么通常要异步？</div>
+                    <div class="qopts"><button class="qopt" data-i="0">A. 因为 Python 只能异步</button><button class="qopt" data-i="1">B. 模型推理是 IO 密集，异步才能在高并发下不阻塞</button><button class="qopt" data-i="2">C. 异步能让模型算得更快</button><button class="qopt" data-i="3">D. 为了代码好看</button></div>
+                    <div class="qwhy hidden">解析：推理的等待是 IO，异步让单线程也能同时处理多个请求，不被一个慢请求卡住。</div>
+                  </div><div class="qcard" data-qid="q-1-1" data-type="choice" data-ans="1">
+                    <div class="qtitle"><span class="qnum">6</span>SSE 流式为什么要禁缓冲 / 手动 flush？</div>
+                    <div class="qopts"><button class="qopt" data-i="0">A. 为了省流量</button><button class="qopt" data-i="1">B. 否则响应会被中间层攒着，用户看不到逐字输出</button><button class="qopt" data-i="2">C. 为了加密</button><button class="qopt" data-i="3">D. 必须禁，否则报错</button></div>
+                    <div class="qwhy hidden">解析：不禁缓冲，内容会被代理或框架攒起来一次性发，打字机效果就没了。</div>
+                  </div><div class="qcard" data-qid="q-1-2" data-type="open">
+                    <div class="qtitle"><span class="qnum">7</span>Pydantic 校验对应你 Node 项目里的什么？缺字段应该返回什么状态码？</div>
+                    <button class="qreveal">查看参考答案 ▾</button>
+                    <div class="qref hidden">对应 server.ts 里手工写的字段校验；缺字段或类型错应返回 400（客户端错误），而不是 500。</div>
+                    <div class="qself hidden">
+                      <button class="qselfbtn" data-ok="1">✔ 我答对了</button>
+                      <button class="qselfbtn" data-ok="0">✘ 没答对</button>
+                    </div>
+                  </div><div class="qcard" data-qid="q-1-3" data-type="open">
+                    <div class="qtitle"><span class="qnum">8</span>用 Node 内置 http 手写一个 SSE 端点，关键三步是什么？</div>
+                    <button class="qreveal">查看参考答案 ▾</button>
+                    <div class="qref hidden">1) 设 Content-Type: text/event-stream、Cache-Control: no-cache、禁缓冲；2) 每条消息以 `data: ` 开头、以空行分隔；3) 保持连接不结束，必要时定时 flush。</div>
+                    <div class="qself hidden">
+                      <button class="qselfbtn" data-ok="1">✔ 我答对了</button>
+                      <button class="qselfbtn" data-ok="0">✘ 没答对</button>
+                    </div>
+                  </div></div>
+        </section>
+        <section class="qgroup" data-g="2">
+          <h3 class="qgroup-title">阶段 3 · 向量检索 + RAG <span class="qscore" id="qcnt-2">0/4</span></h3>
+          <div class="qlist"><div class="qcard" data-qid="q-2-0" data-type="choice" data-ans="1">
+                    <div class="qtitle"><span class="qnum">9</span>关键词检索（你的 TF-IDF）最大的短板是什么？</div>
+                    <div class="qopts"><button class="qopt" data-i="0">A. 太慢</button><button class="qopt" data-i="1">B. 同义词 / 改写检索不到（字面不重合就召回不了）</button><button class="qopt" data-i="2">C. 占内存太大</button><button class="qopt" data-i="3">D. 不支持中文</button></div>
+                    <div class="qwhy hidden">解析：关键词靠字面重合，语义相近但用词不同的内容会漏；这正是要加向量通道的原因。</div>
+                  </div><div class="qcard" data-qid="q-2-1" data-type="choice" data-ans="1">
+                    <div class="qtitle"><span class="qnum">10</span>Rerank 在 RAG 里属于哪一步？</div>
+                    <div class="qopts"><button class="qopt" data-i="0">A. 召回之前</button><button class="qopt" data-i="1">B. 召回之后、给模型之前，对候选精排</button><button class="qopt" data-i="2">C. 生成之后</button><button class="qopt" data-i="3">D. 和检索无关</button></div>
+                    <div class="qwhy hidden">解析：先多路召回一批候选，再用交叉编码器精排取 Top-K，慢但准。</div>
+                  </div><div class="qcard" data-qid="q-2-2" data-type="open">
+                    <div class="qtitle"><span class="qnum">11</span>面试官问「你怎么知道 agent 改好了还是改坏了」，你怎么答？</div>
+                    <button class="qreveal">查看参考答案 ▾</button>
+                    <div class="qref hidden">确定性部分用断言（我手写 142 条）；非确定性部分用黄金问题集跑命中率与回归。指标看检索侧 Recall@K / MRR，生成侧忠实度 / 相关性。</div>
+                    <div class="qself hidden">
+                      <button class="qselfbtn" data-ok="1">✔ 我答对了</button>
+                      <button class="qselfbtn" data-ok="0">✘ 没答对</button>
+                    </div>
+                  </div><div class="qcard" data-qid="q-2-3" data-type="open">
+                    <div class="qtitle"><span class="qnum">12</span>什么时候「不该」用 RAG？</div>
+                    <button class="qreveal">查看参考答案 ▾</button>
+                    <div class="qref hidden">知识固定且延迟极敏感 → 微调或长上下文；数据极小 → 直接塞进 prompt，上检索是过度设计。</div>
+                    <div class="qself hidden">
+                      <button class="qselfbtn" data-ok="1">✔ 我答对了</button>
+                      <button class="qselfbtn" data-ok="0">✘ 没答对</button>
+                    </div>
+                  </div></div>
+        </section>
+        <section class="qgroup" data-g="3">
+          <h3 class="qgroup-title">阶段 4 · Agent 架构 + 评估 <span class="qscore" id="qcnt-3">0/4</span></h3>
+          <div class="qlist"><div class="qcard" data-qid="q-3-0" data-type="choice" data-ans="1">
+                    <div class="qtitle"><span class="qnum">13</span>LangGraph 相比 LangChain 解决的核心问题是什么？</div>
+                    <div class="qopts"><button class="qopt" data-i="0">A. 让 prompt 更好写</button><button class="qopt" data-i="1">B. 把多步骤流程建模成显式状态机（节点 + 边 + 条件分支 + 循环）</button><button class="qopt" data-i="2">C. 替代向量数据库</button><button class="qopt" data-i="3">D. 只是换了个名字</button></div>
+                    <div class="qwhy hidden">解析：LangChain 管单个链怎么搭，LangGraph 管多个步骤怎么流转。</div>
+                  </div><div class="qcard" data-qid="q-3-1" data-type="choice" data-ans="1">
+                    <div class="qtitle"><span class="qnum">14</span>上下文压缩（你的 compress.ts）在什么情况下触发？</div>
+                    <div class="qopts"><button class="qopt" data-i="0">A. 每次请求都压</button><button class="qopt" data-i="1">B. 历史超过阈值时，把早期对话交给模型总结</button><button class="qopt" data-i="2">C. 只在报错时</button><button class="qopt" data-i="3">D. 永远不触发</button></div>
+                    <div class="qwhy hidden">解析：阈值触发，只压早期、保留近期细节，是在「无限增长」和「丢信息」之间取舍。</div>
+                  </div><div class="qcard" data-qid="q-3-2" data-type="open">
+                    <div class="qtitle"><span class="qnum">15</span>你的 agent 循环靠什么保证一定会停？跑满了会怎样？</div>
+                    <button class="qreveal">查看参考答案 ▾</button>
+                    <div class="qref hidden">靠 maxSteps 兜底；跑满时明确说「未完成」，不假装给了答案——这是诚实性设计。</div>
+                    <div class="qself hidden">
+                      <button class="qselfbtn" data-ok="1">✔ 我答对了</button>
+                      <button class="qselfbtn" data-ok="0">✘ 没答对</button>
+                    </div>
+                  </div><div class="qcard" data-qid="q-3-3" data-type="open">
+                    <div class="qtitle"><span class="qnum">16</span>如果要给这个 agent 加「可恢复执行」，你会怎么做？</div>
+                    <button class="qreveal">查看参考答案 ▾</button>
+                    <div class="qref hidden">把 messages / 状态落盘（像 memory.ts 那样），中断后从落盘点继续；对应 LangGraph 的检查点（checkpoint）。</div>
+                    <div class="qself hidden">
+                      <button class="qselfbtn" data-ok="1">✔ 我答对了</button>
+                      <button class="qselfbtn" data-ok="0">✘ 没答对</button>
+                    </div>
+                  </div></div>
+        </section></div>
 </main>
 <footer>由笔记自动生成 · 数据来自 notes/索引.md · 双击即可离线学习</footer>
 <script>
@@ -16994,6 +17143,108 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
     checks.forEach(function(c){ c.checked = false; });
     refresh();
   });
+  refresh();
+})();
+</script>
+<script>
+(function(){
+  var KEY = 'agent-learn-quiz';
+  var notice = document.getElementById('qnotice');
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; }
+  catch(e) { if (notice) notice.textContent = '读取自测进度失败，本次从 0 开始。'; }
+
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(state)); if (notice) notice.textContent=''; }
+    catch(e) { if (notice) notice.textContent = '进度无法保存（浏览器禁用了本地存储）。'; }
+  }
+  function refresh(){
+    var ok = 0, total = 0;
+    Array.prototype.forEach.call(document.querySelectorAll('.qgroup'), function(g){
+      var gcards = Array.prototype.slice.call(g.querySelectorAll('.qcard'));
+      var gok = 0;
+      gcards.forEach(function(c){ total++; if (state[c.dataset.qid] && state[c.dataset.qid].ok) { gok++; ok++; } });
+      var el = document.getElementById('qcnt-' + g.dataset.g);
+      if (el) el.textContent = gok + '/' + gcards.length;
+    });
+    var fill = document.getElementById('qprogfill');
+    var txt = document.getElementById('qprogtxt');
+    var nav = document.getElementById('nav-quiz');
+    if (fill) fill.style.width = (total ? (ok/total*100) : 0) + '%';
+    if (txt) txt.textContent = ok + ' / ' + total;
+    if (nav) nav.textContent = '🧪 阶段自测 (' + ok + '/' + total + ')';
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.qcard[data-type="choice"]'), function(card){
+    var qid = card.dataset.qid;
+    var ans = parseInt(card.dataset.ans, 10);
+    var opts = Array.prototype.slice.call(card.querySelectorAll('.qopt'));
+    var why = card.querySelector('.qwhy');
+    function mark(choiceIdx){
+      opts.forEach(function(o, i){
+        o.disabled = true;
+        if (i === ans) o.classList.add('correct');
+        else if (i === choiceIdx) o.classList.add('wrong');
+      });
+      if (why) why.classList.remove('hidden');
+    }
+    opts.forEach(function(o){
+      o.addEventListener('click', function(){
+        if (state[qid]) return;
+        var i = parseInt(o.dataset.i, 10);
+        state[qid] = { ok: i === ans, i: i };
+        save(); mark(i); refresh();
+      });
+    });
+    if (state[qid]) mark(state[qid].i);
+  });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.qcard[data-type="open"]'), function(card){
+    var qid = card.dataset.qid;
+    var reveal = card.querySelector('.qreveal');
+    var ref = card.querySelector('.qref');
+    var self = card.querySelector('.qself');
+    var btns = Array.prototype.slice.call(card.querySelectorAll('.qselfbtn'));
+    function openRef(){
+      if (ref) ref.classList.remove('hidden');
+      if (self) self.classList.remove('hidden');
+      if (reveal) { reveal.textContent = '参考答案已展开'; reveal.disabled = true; }
+    }
+    if (reveal) reveal.addEventListener('click', openRef);
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        var ok = b.dataset.ok === '1';
+        state[qid] = { ok: ok };
+        btns.forEach(function(x){ x.classList.remove('ok','bad'); });
+        b.classList.add(ok ? 'ok' : 'bad');
+        save(); refresh();
+      });
+    });
+    if (state[qid]) {
+      openRef();
+      btns.forEach(function(x){ if ((x.dataset.ok === '1') === state[qid].ok) x.classList.add(state[qid].ok ? 'ok' : 'bad'); });
+    }
+  });
+
+  var rb = document.getElementById('qresetbtn');
+  if (rb) rb.addEventListener('click', function(){
+    if (!confirm('确定清空自测成绩？')) return;
+    state = {};
+    try { localStorage.removeItem(KEY); } catch(e){ if (notice) notice.textContent='清空失败：本地存储不可用。'; }
+    Array.prototype.forEach.call(document.querySelectorAll('.qcard'), function(card){
+      if (card.dataset.type === 'choice') {
+        Array.prototype.forEach.call(card.querySelectorAll('.qopt'), function(o){ o.disabled = false; o.classList.remove('correct','wrong'); });
+        var w = card.querySelector('.qwhy'); if (w) w.classList.add('hidden');
+      } else {
+        var rf = card.querySelector('.qref'); if (rf) rf.classList.add('hidden');
+        var sf = card.querySelector('.qself'); if (sf) sf.classList.add('hidden');
+        var rv = card.querySelector('.qreveal'); if (rv) { rv.textContent = '查看参考答案 ▾'; rv.disabled = false; }
+        Array.prototype.forEach.call(card.querySelectorAll('.qselfbtn'), function(x){ x.classList.remove('ok','bad'); });
+      }
+    });
+    refresh();
+  });
+
   refresh();
 })();
 </script>
