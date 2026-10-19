@@ -97,8 +97,9 @@
   .nfull { margin:6px 0 0; }
   .nfull summary { cursor:pointer; color:var(--accent); font-size:13px; margin:8px 0 4px; }
   .nfull pre { white-space:pre-wrap; word-break:break-word; font-family:inherit;
-    font-size:13px; color:var(--dim); background:var(--panel2); padding:10px 12px;
-    border-radius:8px; max-height:420px; overflow:auto; margin:0; }
+    font-size:13.5px; line-height:1.7; color:var(--fg); background:var(--panel2); padding:12px 14px;
+    border-radius:8px; max-height:70vh; overflow:auto; margin:0; }
+  .ncard:has(details.nfull[open]) { grid-column:1 / -1; }
 </style>
 <style>
   /* practice */
