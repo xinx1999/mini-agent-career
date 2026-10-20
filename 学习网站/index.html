@@ -4,6 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI 应用工程师 · 学习中心</title>
+<script>
+function showTab(name){
+  var target = document.getElementById(name);
+  if (!target) {
+    var tries = 0;
+    var iv = setInterval(function(){
+      if (document.getElementById(name) || ++tries > 120) { clearInterval(iv); if (document.getElementById(name)) showTab(name); }
+    }, 100);
+    return;
+  }
+  var btns = document.querySelectorAll('nav button');
+  for (var i = 0; i < btns.length; i++) btns[i].classList.toggle('active', btns[i].dataset.tab === name);
+  var tabs = document.querySelectorAll('.tab');
+  for (var j = 0; j < tabs.length; j++) tabs[j].classList.toggle('hidden', tabs[j].id !== name);
+  window.scrollTo(0, 0);
+}
+</script>
 <style>
   :root {
     --bg:#0f1115; --panel:#171a21; --panel2:#1d212b; --line:#2a2f3a;
@@ -159,12 +176,12 @@
 <header>
   <h1>AI 应用工程师 · <span>学习中心</span></h1>
   <nav>
-    <button data-tab="roadmap" class="active">🗺️ 学习路线</button>
-    <button data-tab="knowledge">📚 知识点</button>
-    <button data-tab="project">🛠️ 项目实操</button>
-    <button data-tab="notes">📝 笔记库（165）</button>
-    <button data-tab="practice" id="nav-practice">🎯 练习闯关</button>
-    <button data-tab="quiz" id="nav-quiz">🧪 阶段自测</button>
+    <button data-tab="roadmap" class="active" onclick="showTab('roadmap')">🗺️ 学习路线</button>
+    <button data-tab="knowledge" onclick="showTab('knowledge')">📚 知识点</button>
+    <button data-tab="project" onclick="showTab('project')">🛠️ 项目实操</button>
+    <button data-tab="notes" onclick="showTab('notes')">📝 笔记库（165）</button>
+    <button data-tab="practice" id="nav-practice" onclick="showTab('practice')">🎯 练习闯关</button>
+    <button data-tab="quiz" id="nav-quiz" onclick="showTab('quiz')">🧪 阶段自测</button>
   </nav>
 </header>
 <main>
@@ -17249,16 +17266,6 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
 <footer>由笔记自动生成 · 数据来自 notes/索引.md · 双击即可离线学习</footer>
 <script>
   const TOTAL = 165;
-  // tab switch
-  document.querySelectorAll('nav button').forEach(b => {
-    b.onclick = () => {
-      document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));
-      b.classList.add('active');
-      document.querySelectorAll('.tab').forEach(t=>t.classList.add('hidden'));
-      document.getElementById(b.dataset.tab).classList.remove('hidden');
-      window.scrollTo(0,0);
-    };
-  });
   // note search + filter
   const search = document.getElementById('nsearch');
   const chips = document.querySelectorAll('.chip');
