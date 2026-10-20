@@ -146,6 +146,20 @@ function showTab(name){
   .excard input:checked ~ .exbody .extitle { text-decoration:line-through; color:var(--dim); }
   .extask, .exexp, .exver { font-size:13px; margin:3px 0; color:var(--dim); }
   .extask b, .exexp b, .exver b { color:var(--accent2); }
+  /* data viz */
+  .databox { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px; margin-bottom:18px; }
+  .datahead { font-size:13px; color:var(--dim); margin-bottom:10px; }
+  .nbrow, .qbarrow { display:flex; align-items:center; gap:10px; margin:7px 0; }
+  .nbname { width:170px; font-size:12.5px; color:var(--fg); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .qbar-label { width:210px; font-size:12.5px; color:var(--fg); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .nbtrack, .qbar-track { flex:1; height:10px; background:var(--panel2); border-radius:5px; overflow:hidden; }
+  .nbfill, .qbar-fill { display:block; height:100%; width:0; background:linear-gradient(90deg,var(--accent),var(--accent2)); }
+  .nbnum, .qbar-num { width:44px; text-align:right; font-size:12.5px; color:var(--dim); font-variant-numeric:tabular-nums; }
+  .prow { display:flex; align-items:center; gap:10px; margin:8px 0; }
+  .plabel { width:210px; font-size:12.5px; color:var(--fg); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .pdots { display:flex; gap:6px; flex-wrap:wrap; }
+  .pdot { width:14px; height:14px; border-radius:50%; background:var(--panel2); border:1px solid var(--line); }
+  .pdot.done { background:var(--accent2); border-color:var(--accent2); }
 
   /* quiz */
   .qgroup { margin-bottom:26px; }
@@ -199,22 +213,22 @@ function showTab(name){
 </marker>
 </defs>
 <text x="40" y="40" font-size="14" font-weight="500" fill="#e6e9ef">学习路径：4 个阶段，一条主线</text>
-<g><rect x="50" y="70" width="130" height="96" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="0.5"/>
-<text x="115" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#e6e9ef">阶段 1</text>
-<text x="115" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9aa3b2">第1周 · LangChain</text>
-<text x="115" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b9dff">产出：读懂 agent</text></g>
-<g><rect x="200" y="70" width="130" height="96" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="0.5"/>
-<text x="265" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#e6e9ef">阶段 2</text>
-<text x="265" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9aa3b2">第2-3周 · FastAPI</text>
-<text x="265" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b9dff">产出：翻译 server.ts</text></g>
-<g><rect x="350" y="70" width="130" height="96" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="0.5"/>
-<text x="415" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#e6e9ef">阶段 3</text>
-<text x="415" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9aa3b2">第4-5周 · RAG</text>
-<text x="415" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b9dff">产出：加向量通道</text></g>
-<g><rect x="500" y="70" width="130" height="96" rx="10" fill="#171a21" stroke="#2a2f3a" stroke-width="0.5"/>
-<text x="565" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#e6e9ef">阶段 4</text>
-<text x="565" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#9aa3b2">第6周 · Agent</text>
-<text x="565" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5b9dff">产出：LangGraph + 评估</text></g>
+<g><rect x="50" y="70" width="130" height="96" rx="10" fill="#0C447C" stroke="#5b9dff" stroke-width="0.5"/>
+<text x="115" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#B5D4F4">阶段 1</text>
+<text x="115" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#85B7EB">第1周 · LangChain</text>
+<text x="115" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#e6e9ef">产出：读懂 agent</text></g>
+<g><rect x="200" y="70" width="130" height="96" rx="10" fill="#085041" stroke="#7ee0c0" stroke-width="0.5"/>
+<text x="265" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#9FE1CB">阶段 2</text>
+<text x="265" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5DCAA5">第2-3周 · FastAPI</text>
+<text x="265" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#e6e9ef">产出：翻译 server.ts</text></g>
+<g><rect x="350" y="70" width="130" height="96" rx="10" fill="#633806" stroke="#ffcf6b" stroke-width="0.5"/>
+<text x="415" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#FAC775">阶段 3</text>
+<text x="415" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#EF9F27">第4-5周 · RAG</text>
+<text x="415" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#e6e9ef">产出：加向量通道</text></g>
+<g><rect x="500" y="70" width="130" height="96" rx="10" fill="#712B13" stroke="#ff9a9a" stroke-width="0.5"/>
+<text x="565" y="92" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#F5C4B3">阶段 4</text>
+<text x="565" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#F0997B">第6周 · Agent</text>
+<text x="565" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#e6e9ef">产出：LangGraph + 评估</text></g>
 <path d="M180 118 H200" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow2)"/>
 <path d="M330 118 H350" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow2)"/>
 <path d="M480 118 H500" fill="none" stroke="#9aa3b2" stroke-width="1.5" marker-end="url(#arrow2)"/>
@@ -644,6 +658,7 @@ function showTab(name){
       <p>共 <b>165</b> 份笔记，来自 4 门课。点开任意笔记可看<b>完整全文</b>（含五节：
       一句话总结 · 核心要点 · 和我的项目的对应 · 面试可能怎么问 · 存疑处）；「打开原文」按钮在本地双击时可用。</p>
     </div>
+    <div class="databox"><div class="datahead">📊 笔记分布：4 门课各多少份</div><div class="nbrow"><span class="nbname">这绝对是b站把大模型RAG讲的最详细最全面的</span><span class="nbtrack"><span class="nbfill" style="width:47%"></span></span><span class="nbnum">27</span></div><div class="nbrow"><span class="nbname">FastAPI框架持续火爆，《FastAPI</span><span class="nbtrack"><span class="nbfill" style="width:64%"></span></span><span class="nbnum">37</span></div><div class="nbrow"><span class="nbname">黑马程序员大模型RAG与Agent智能体项目</span><span class="nbtrack"><span class="nbfill" style="width:100%"></span></span><span class="nbnum">58</span></div><div class="nbrow"><span class="nbname">尚硅谷LangGraph教程，langgra</span><span class="nbtrack"><span class="nbfill" style="width:74%"></span></span><span class="nbnum">43</span></div></div>
     <div class="searchbar">
       <input id="nsearch" type="text" placeholder="搜标题或摘要，例如：Rerank / 评估 / memory / LangGraph" />
       <div class="chips"><button class="chip active" data-c="all">全部</button><button class="chip" data-c="BV15oHC6zE9x">这绝对是b站把大模型RAG讲的最详细…</button><button class="chip" data-c="BV1brpc6CEyT">FastAPI框架持续火爆，《Fas…</button><button class="chip" data-c="BV1yjz5BLEoY">黑马程序员大模型RAG与Agent智…</button><button class="chip" data-c="BV1z3NY66EY1">尚硅谷LangGraph教程，lan…</button></div>
@@ -16971,6 +16986,7 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
       <p>把「看懂」变成「做到」。这些练习全部基于你自己的项目，每个都写了<b>改什么 / 预期现象 / 怎么验收</b>——
       做完勾上，进度自动存在本地。共 <b>18</b> 个。</p>
     </div>
+    <div class="databox"><div class="datahead">🗺️ 关卡地图：勾选后点亮</div><div class="prow"><span class="plabel">阶段 1 · LangChain 组件 ↔ 手写实现</span><span class="pdots"><span class="pdot" data-eid="ex-0-0"></span><span class="pdot" data-eid="ex-0-1"></span><span class="pdot" data-eid="ex-0-2"></span><span class="pdot" data-eid="ex-0-3"></span><span class="pdot" data-eid="ex-0-4"></span></span></div><div class="prow"><span class="plabel">阶段 2 · FastAPI / 异步后端</span><span class="pdots"><span class="pdot" data-eid="ex-1-0"></span><span class="pdot" data-eid="ex-1-1"></span><span class="pdot" data-eid="ex-1-2"></span><span class="pdot" data-eid="ex-1-3"></span></span></div><div class="prow"><span class="plabel">阶段 3 · 向量检索 + RAG</span><span class="pdots"><span class="pdot" data-eid="ex-2-0"></span><span class="pdot" data-eid="ex-2-1"></span><span class="pdot" data-eid="ex-2-2"></span><span class="pdot" data-eid="ex-2-3"></span></span></div><div class="prow"><span class="plabel">阶段 4 · Agent 架构 + 评估</span><span class="pdots"><span class="pdot" data-eid="ex-3-0"></span><span class="pdot" data-eid="ex-3-1"></span><span class="pdot" data-eid="ex-3-2"></span><span class="pdot" data-eid="ex-3-3"></span><span class="pdot" data-eid="ex-3-4"></span></span></div></div>
     <div class="progwrap">
       <div class="progbar"><div class="progfill" id="progfill"></div></div>
       <span class="progtxt" id="progtxt">0 / 18</span>
@@ -17143,6 +17159,7 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
       <p>每个阶段 4 道题：选择题点选项立刻判对错并给解析；开放题先自己答，再点「查看参考答案」自评。
       共 <b>16</b> 题。答对进度自动存在本地。</p>
     </div>
+    <div class="databox"><div class="datahead">📊 阶段得分：答对多少</div><div class="qbarrow"><span class="qbar-label">阶段 1 · LangChain 组件 ↔ 手写实现</span><span class="qbar-track"><span class="qbar-fill" id="qbar-0"></span></span><span class="qbar-num" id="qbarn-0">0/4</span></div><div class="qbarrow"><span class="qbar-label">阶段 2 · FastAPI / 异步后端</span><span class="qbar-track"><span class="qbar-fill" id="qbar-1"></span></span><span class="qbar-num" id="qbarn-1">0/4</span></div><div class="qbarrow"><span class="qbar-label">阶段 3 · 向量检索 + RAG</span><span class="qbar-track"><span class="qbar-fill" id="qbar-2"></span></span><span class="qbar-num" id="qbarn-2">0/4</span></div><div class="qbarrow"><span class="qbar-label">阶段 4 · Agent 架构 + 评估</span><span class="qbar-track"><span class="qbar-fill" id="qbar-3"></span></span><span class="qbar-num" id="qbarn-3">0/4</span></div></div>
     <div class="progwrap">
       <div class="progbar"><div class="progfill" id="qprogfill"></div></div>
       <span class="progtxt" id="qprogtxt">0 / 16</span>
@@ -17312,6 +17329,10 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
       if (el) el.textContent = gd + '/' + gcs.length;
       done += gd;
     });
+    Array.prototype.forEach.call(checks, function(c){
+      var dot = document.querySelector('.pdot[data-eid="' + c.dataset.eid + '"]');
+      if (dot) dot.classList.toggle('done', c.checked);
+    });
     var total = checks.length;
     var fill = document.getElementById('progfill');
     var txt = document.getElementById('progtxt');
@@ -17365,6 +17386,10 @@ LangGraph 的持久化机制通过在每个关键节点保存<b>状态快照（C
       gcards.forEach(function(c){ total++; if (state[c.dataset.qid] && state[c.dataset.qid].ok) { gok++; ok++; } });
       var el = document.getElementById('qcnt-' + g.dataset.g);
       if (el) el.textContent = gok + '/' + gcards.length;
+      var bar = document.getElementById('qbar-' + g.dataset.g);
+      var barn = document.getElementById('qbarn-' + g.dataset.g);
+      if (bar) bar.style.width = (gcards.length ? (gok / gcards.length * 100) : 0) + '%';
+      if (barn) barn.textContent = gok + '/' + gcards.length;
     });
     var fill = document.getElementById('qprogfill');
     var txt = document.getElementById('qprogtxt');
