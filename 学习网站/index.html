@@ -273,6 +273,15 @@
           <p class="takeaway">💡 ⚠️ 学习路线原写“看黑马里讲 LangGraph 的 P”，但实测黑马 67P 里根本没有 LangGraph——它的 Agent 用 LangChain Agent + middleware。LangGraph 一半要靠尚硅谷那套补。</p>
           
         </section>
+    
+    <section class="card stage">
+      <div class="stage-head"><span class="badge">补充</span><h3>主线之外：对齐黑马「应用线」的四块</h3></div>
+      <p class="goal">主线（LangChain → FastAPI → RAG → Agent）之外，黑马应用线还强调这四块。面试会问，但不影响主线；有余力再补。</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>主题</th><th>是什么</th><th>盯住什么</th><th>对应项目</th><th>面试怎么用</th></tr></thead>
+        <tbody><tr><td class='mono'>Coze / Dify</td><td>低代码搭智能体</td><td>拖拽工作流 + 知识库 + 插件</td><td class='mono small'>你项目是手写版，平台是拖拽版</td><td class='small'>“会不会用平台快速搭”</td></tr><tr><td class='mono'>MCP</td><td>模型接外部工具的标准化协议</td><td>工具名 + 参数 → 通用协议</td><td class='mono small'>你的 tools.ts 是手写版</td><td class='small'>“你怎么接外部工具”</td></tr><tr><td class='mono'>多智能体 / A2A</td><td>多个 Agent 分工协作</td><td>编排器-工作者；Agent 间通信协议</td><td class='mono small'>你的 agent.ts 可扩展为编排层</td><td class='small'>2026 多 Agent 是标配</td></tr><tr><td class='mono'>LangSmith</td><td>追踪 / 评估 / 调试 agent</td><td>每步输入输出、token、耗时</td><td class='mono small'>你的 trace.ts 是手写版</td><td class='small'>“你怎么调试和评估 agent”</td></tr></tbody>
+      </table></div>
+    </section>
     <section class="card">
       <h3>看完每一P 都问自己这三个问题</h3>
       <ol class="questions"><li>这和我项目里的哪个文件是同一件事？（答不上来 → 这P 对你没价值，跳过）</li><li>它讲没讲“为什么不用另一种写法”？（只讲“这样写”的是 API 说明书，价值低）</li><li>这句话我能在面试里说出来吗？（说不出来 → 记进笔记，别只点头）</li></ol>
@@ -462,6 +471,30 @@
               <p class="kone">服务端推送打字机效果</p>
               <p class="kana">🧩 像看直播而不是等录播：内容一边生成一边推给你。</p>
               <p class="kdetail">你的 server.ts 已有 SSE；FastAPI 用 StreamingResponse 实现同一件事。</p>
+            </div></div>
+        </section>
+        <section class="kgroup">
+          <h3 class="kgroup-title">平台与工程化（补充）</h3>
+          <div class="kgrid"><div class="kcard" id="k-7-0">
+              <div class="kcard-head"><h4>Coze / Dify</h4><span class="src">补充 · 平台</span></div>
+              <p class="kone">低代码搭智能体：拖拽工作流 + 知识库 + 插件</p>
+              <p class="kana">🧩 像用 Canva 做海报 vs 用 PS——拖拽就能出活，但底层还是那些元素。</p>
+              <p class="kdetail">你项目是手写版，平台是拖拽版。价值在快速验证、非技术同事也能改。面试问“会不会用平台快速搭”，答“会，但知道它底层还是 RAG + 工具调用”。</p>
+            </div><div class="kcard" id="k-7-1">
+              <div class="kcard-head"><h4>MCP（Model Context Protocol）</h4><span class="src">补充 · 协议</span></div>
+              <p class="kone">模型标准化接外部工具/数据的协议</p>
+              <p class="kana">🧩 像 USB 接口：以前每个设备一种线，现在统一一个口，什么都能插。</p>
+              <p class="kdetail">你的 tools.ts 是手写工具协议（工具名+参数），MCP 把它标准化成通用协议，让任何模型接任何工具。</p>
+            </div><div class="kcard" id="k-7-2">
+              <div class="kcard-head"><h4>A2A（Agent-to-Agent）</h4><span class="src">补充 · 协议</span></div>
+              <p class="kone">Agent 之间的通信协议，让不同框架/厂商的 Agent 互相调用</p>
+              <p class="kana">🧩 像公司之间的对接人：不共享内部系统，只按约定接口传话。</p>
+              <p class="kdetail">对应多智能体协作的落地标准。主 Agent 拆任务给子 Agent，按约定接口传话，不共享内部系统。</p>
+            </div><div class="kcard" id="k-7-3">
+              <div class="kcard-head"><h4>LangSmith</h4><span class="src">补充 · 可观测</span></div>
+              <p class="kone">Agent 的追踪 / 评估 / 调试平台</p>
+              <p class="kana">🧩 像给 agent 装了行车记录仪：每步输入输出、耗时、花了多少 token 全记下来。</p>
+              <p class="kdetail">你的 trace.ts 是手写版；LangSmith 是官方方案，能看到每一步的输入输出、token、耗时，还能跑评估。面试“你怎么调试 agent”的答案。</p>
             </div></div>
         </section></div>
   <div id="project" class="tab hidden">
